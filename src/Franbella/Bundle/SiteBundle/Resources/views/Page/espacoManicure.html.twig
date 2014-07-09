@@ -1,0 +1,52 @@
+{# empty Twig template #}
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/jcarousel.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/jcarousel.basic.css') }}" />
+{% endblock %}
+{% block conteudo %}
+<div class="caixa-descricao-espaco">
+    <h3 class="titulo-pagina">Espa&ccedil;o da Manicure</h3>
+    <p class="subtitulo-produto">Confira nossos links e novidades</p>
+    <br />
+    <br />
+    <h4 class="titulo-pagina">Unhas Marmorizadas</h4>
+    <p>Postamos na nossa FANPAGE v&iacute;deo de como fazer uma 
+        bela unha marmorizada.</p>
+    <br />
+    <h4 class="titulo-pagina">Porgrama Eliana</h4>
+    <p>Hoje postamos na nossa FANPAGE link do programa da Eliana no SBT.</p>
+    <br />
+    <h4 class="titulo-pagina">Manicures</h4>
+    <p>Dicas de como atender bem.</p>
+</div>
+<div class="caixa-video-externa">
+    <div class="caixa-video">
+        <ul>
+            <li>
+                <div class="video"><img src="{{ asset('imagens/hipo.png') }}" /></div>
+            </li>
+            <li>
+                <div class="video"><img src="{{ asset('imagens/removedor.png') }}" /></div>
+            </li>
+        </ul>
+    </div>
+    <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+    <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+    <p class="jcarousel-pagination"></p>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('js/jquery.jcarousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jcarousel.basic.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.tubular.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.caixa-video').jcarousel();
+        $('.jcarousel-pagination').jcarouselPagination();
+{#        $('.video').tubular({videoId: 'ZCAnLxRvNNc'});#}
+    });
+</script>
+{% endblock %}

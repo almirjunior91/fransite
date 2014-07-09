@@ -1,0 +1,16 @@
+{% extends "FranbellaAdminBundle:Page:index.html.twig" %}
+{% block interno %}
+{% block tituloAdministracao %}
+    <h3 class="titulo-pagina-admin">Distribuidores</h3>
+{% endblock %}
+    <div class="panel panel-default painel-conteudo-admin">
+        <div class="panel-heading conteudo-admin">
+            {% block conteudoAdministracao %}
+                <form name="cadastra-distribuidor" id="cadastra-distribuidor" action="#" method="POST">
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Cadastrar" />
+                </form>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: franbella
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: smtp.valeservicefarma.com.br
+    mailer_user: almir@valeservicefarma.com.br
+    mailer_password: almir123
+    locale: pt
+    secret: eeee2f7be844ad312f7ffdce6079cc67

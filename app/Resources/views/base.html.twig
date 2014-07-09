@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Franbella{% endblock %}</title>
+        {% block stylesheets %}
+{#        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />#}
+        <link rel="stylesheet" href="{{ asset('css/estilos.css') }}" />
+        {% endblock %}
+        {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/require.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
+        <script type="text/javascript">
+            require.config({
+                    baseUrl: '{{ asset('js') }}',
+                    paths: {
+                        jquery: 'jquery'
+                    }
+                });
+            $(document).ready(function(){
+                $('.caixa-eventos, .caixa-descricao, .caixa-descricao-espaco, .caixa-imagem').niceScroll({
+                    cursorcolor: '#962169'
+                });
+                {#$('.caixa-descricao').niceScroll();
+                $('.caixa-descricao-espaco').niceScroll();
+                $('.caixa-imagem').niceScroll();#}
+            });    
+           
+        </script>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+        
+        <div id="caixa">
+            <div id="banner">
+                <a href="{{ path('franbella_site_homepage') }}"><img src="{{ asset('imagens/banner.png') }}" /></a>
+            </div>
+            <ul id="menu">
+                <li><a href="{{ path('franbella_site_linha') }}"><span>A Linha</span></a></li>
+                <li><a href="{{ path('franbella_site_espaco_manicure') }}"><span>Espa&ccedil;o da Manicure</span></a></li>
+                <li><a href="{{ path('franbella_site_agenda') }}"><span>Agenda/Eventos</span></a></li>
+                <li><a href="{{ path('franbella_site_fale_conosco') }}"><span>Fale Conosco</span></a></li>
+                <li><a href="{{ path('franbella_site_onde_encontro') }}"><span>Onde Encontro</span></a></li>
+                <li><a href="{{ path('franbella_site_seja_distribuidor') }}"><span>Seja Um Distribuidor</span></a></li>
+            </ul>
+            <div id="conteudo">
+            {% block conteudo %}
+                <img id="index" src="{{ asset('imagens/index.png') }}" />
+            {% endblock %}
+                <a id="logo-facebook" href="http://www.facebook.com/leifran.franbella" target="_blank">
+                    <img id="facebook" 
+                         src="{{ asset('imagens/facebook.png') }}" />
+                </a>
+            </div>
+        </div>
+        
+        {% endblock %}
+    </body>
+</html>

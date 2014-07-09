@@ -1,0 +1,48 @@
+franbella_site_homepage:
+    pattern:  /
+    defaults: { _controller: FranbellaSiteBundle:Page:index }
+
+franbella_site_linha:
+    pattern:  /linha
+    defaults: { _controller: FranbellaSiteBundle:Page:linha }
+
+franbella_site_linha_tratamento:
+    pattern:  /linha/tratamento
+    defaults: { _controller: FranbellaSiteBundle:Page:tratamento }
+
+franbella_site_linha_removedores:
+    pattern:  /linha/removedores
+    defaults: { _controller: FranbellaSiteBundle:Page:removedores }
+    
+franbella_site_espaco_manicure:
+    pattern:  /espaco-manicure
+    defaults: { _controller: FranbellaSiteBundle:Page:espaco }
+
+franbella_site_agenda:
+    pattern:  /agenda
+    defaults: { _controller: FranbellaSiteBundle:Page:agenda }
+    
+franbella_site_fale_conosco:
+    pattern:  /fale-conosco
+    defaults: { _controller: FranbellaSiteBundle:Page:fale }
+    
+franbella_site_onde_encontro:
+    pattern:  /onde-encontro
+    defaults: { _controller: FranbellaSiteBundle:Page:encontro }
+
+franbella_site_seja_distribuidor:
+    pattern:  /seja-distribuidor
+    defaults: { _controller: FranbellaSiteBundle:Page:distribuidor }
+    
+franbella_site_cadastra_contato_distribuidor:
+    pattern:  /seja-distribuidor/cadastra
+    defaults: { _controller: FranbellaSiteBundle:Distribuidor:cadastra }
+    
+
+franbella_site_recupera_dados:
+    pattern:  /sincroniza
+    defaults: { _controller: FranbellaSiteBundle:Page:sincroniza }
+    
+franbella_site_grava_dados:
+    pattern:  /grava
+    defaults: { _controller: FranbellaSiteBundle:Page:grava }

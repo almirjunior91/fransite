@@ -1,0 +1,33 @@
+{# empty Twig template #}
+{% extends "::base.html.twig" %}
+
+{% block conteudo %}
+<div class="caixa-eventos">
+    <h3 class="titulo-pagina">Onde Encontro?</h3>
+    <p class="subtitulo-produto">Ol&aacute;! Precisamos saber 
+        algumas informa&ccedil;&otilde;es</p>
+    <br />
+    
+    <form name="form-busca-lojas" action="#" method="POST">
+        {{ form_widget(form) }}
+        <label for="loja" class="label_form">Procura Por?</label>
+        <select name="loja" id="loja">
+            <option value="1">TODOS</option>
+            <option value="2">Drogarias</option>
+            <option value="3">Supermercados</option>
+            <option value="4">Perfumarias</option>
+            <option value="5">Esmalterias</option>
+            <option value="6">Outros</option>
+        </select>
+        <br />
+        
+        <input type="submit" value="Buscar" />
+    </form>
+    <br />
+    <p class="subtitulo-produto">Resultados:</p>
+    <div class="logo-result"></div>
+    <div class="logo-result"></div>
+    <div class="logo-result"></div>
+    <div class="logo-result"></div>
+</div>
+{% endblock %}

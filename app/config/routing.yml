@@ -1,0 +1,11 @@
+franbella_admin:
+    resource: "@FranbellaAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+franbella_site:
+    resource: "@FranbellaSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bfos_brasil:
+    resource:
+        "@BFOSBrasilBundle/Resources/config/routing.yml"

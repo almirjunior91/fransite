@@ -1,0 +1,11 @@
+franbella_admin_homepage:
+    pattern:  /admin
+    defaults: { _controller: FranbellaAdminBundle:Page:index }
+
+franbella_admin_video_home:
+    pattern: /admin/videos
+    defaults: { _controller: FranbellaAdminBundle:Video:index }
+    
+franbella_admin_distribuidor_home:
+    pattern: /admin/distribuidores
+    defaults: { _controller: FranbellaAdminBundle:Distribuidor:index }

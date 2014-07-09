@@ -1,0 +1,22 @@
+{# empty Twig template #}
+{% extends "::base.html.twig" %}
+{% block conteudo %}
+<div id="caixa-tratamento" class="caixas-produtos">
+    <div id="produtos-tratamento">
+        <a href="{{ path('franbella_site_linha_tratamento') }}">
+            <img id="creme_linha" 
+                         src="{{ asset('imagens/tratamento1.png') }}" />
+        </a>
+    </div>
+    <h4 class="titulo-linha">Linha Tratamento</h4>
+</div>
+<div id="caixa-removedor" class="caixas-produtos">
+    <div id="produtos-removedor">
+        <a href="{{ path('franbella_site_linha_removedores') }}">
+            <img id="hipo" src="{{ asset('imagens/hipo.png') }}" />
+            <img id="removedor" src="{{ asset('imagens/removedor.png') }}" />
+        </a>
+    </div>
+    <h4 class="titulo-linha">Linha Removedores</h4>
+</div>
+{% endblock %}

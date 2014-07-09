@@ -1,0 +1,55 @@
+{# empty Twig template #}
+{% extends "::base.html.twig" %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        $.getJSON('http://portal.valesul.com/leifran/exporta_vendas.php?callback=?', function(data){
+            $total = data.length;
+            
+            var data = {
+                  'itens': JSON.stringify(data)
+            };
+            
+            $.ajax({
+                url: '{{ path('franbella_site_grava_dados') }}',
+                data: data,
+                type: 'POST',
+                success: function(data){
+                      console.log(data);
+              },
+              error: function(request, message, error){
+                      alert("Erro!! "+ message);
+                      console.log(message+" "+error+" "+request);
+              }
+            });
+            
+            {#for(i = 0; i < $total; i++){
+                console.log(data[i]['razao_social']);
+            }#}
+            
+{#            console.log(data.length);#}
+        });
+        
+        {#$.ajax({
+            url: 'http://portal.valesul.com/leifran/exporta_vendas.php',
+            dataType: 'jsonp',
+            jsonp: "resposta",
+            cache: false,
+            jsonpCallback: "resposta"//,
+            callback: function (responseData, textStatus, jqXHR) {
+                alert("AA");
+                console.log(responseData);
+            }
+        });
+        
+        function resposta(){
+            alert("Teste");
+        }#}
+        
+    });
+</script>
+{% endblock %}
+{% block body %}
+{% endblock %}

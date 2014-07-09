@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12/05/2014, 13:50:30
+    Author     : ajunior
+*/
+
+html, body{
+    position: absolute;
+    height: 100%;
+}
+
+body {
+  padding-top: 60px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
+
+.titulo-pagina-admin{
+    color: #DDD;
+    padding: 1%;
+}
+
+.painel-conteudo-admin{
+    height: 100%;
+}
+
+.conteudo-admin{
+    background-color: #FFF;
+    height: 100%;
+}
+
+.container-admin{
+    position: relative;
+    height: 80%;
+}
+
+input[type="file"]{
+    display: inline;
+}
