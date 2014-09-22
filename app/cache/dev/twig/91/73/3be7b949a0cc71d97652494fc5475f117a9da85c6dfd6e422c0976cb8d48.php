@@ -25,93 +25,116 @@ class __TwigTemplate_91733be7b949a0cc71d97652494fc5475f117a9da85c6dfd6e422c0976c
 <html>
     <head>
         <meta charset=\"UTF-8\" />
+        
+        <!--[if lt IE 9]>
+            <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>
+            <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>
+          <![endif]-->
+        
         <title>";
-        // line 5
+        // line 11
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         ";
-        // line 6
+        // line 12
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 10
+        // line 17
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 32
+        // line 53
         echo "        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
     </head>
     <body>
         ";
-        // line 35
+        // line 56
         $this->displayBlock('body', $context, $blocks);
-        // line 61
+        // line 82
         echo "    </body>
 </html>
 ";
     }
 
-    // line 5
+    // line 11
     public function block_title($context, array $blocks = array())
     {
         echo "Franbella";
     }
 
-    // line 6
+    // line 12
     public function block_stylesheets($context, array $blocks = array())
     {
-        // line 8
+        // line 14
         echo "        <link rel=\"stylesheet\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/estilos.css"), "html", null, true);
+        echo "\" />
+        <link rel=\"stylesheet\" href=\"";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/jquery.tosrus.all.css"), "html", null, true);
         echo "\" />
         ";
     }
 
-    // line 10
+    // line 17
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 11
+        // line 18
         echo "        <script type=\"text/javascript\" src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 12
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/require.js"), "html", null, true);
+        // line 19
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.form.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 13
+        // line 20
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.mask.min.js"), "html", null, true);
+        echo "\"></script>
+        <script type=\"text/javascript\" src=\"";
+        // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.nicescroll.min.js"), "html", null, true);
         echo "\"></script>
+        <script type=\"text/javascript\" src=\"";
+        // line 22
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.tosrus.min.all.js"), "html", null, true);
+        echo "\"></script>
+        
         <script type=\"text/javascript\">
-            require.config({
-                    baseUrl: '";
-        // line 16
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js"), "html", null, true);
-        echo "',
-                    paths: {
-                        jquery: 'jquery'
-                    }
-                });
-            \$(document).ready(function(){
+            ";
+        // line 31
+        echo "            \$(document).ready(function(){
                 \$('.caixa-eventos, .caixa-descricao, .caixa-descricao-espaco, .caixa-imagem').niceScroll({
                     cursorcolor: '#962169'
                 });
+                
+                \$(\".thumb-evento-foto a\").each(function(){
+                    \$(this).tosrus({
+                        buttons:{
+                            //prev: false,
+                            //next: false
+                        },
+                        keys: true
+                    });
+                });
+                
                 ";
-        // line 28
+        // line 49
         echo "            });    
            
         </script>
         ";
     }
 
-    // line 35
+    // line 56
     public function block_body($context, array $blocks = array())
     {
-        // line 36
+        // line 57
         echo "        
         <div id=\"caixa\">
             <div id=\"banner\">
                 <a href=\"";
-        // line 39
+        // line 60
         echo $this->env->getExtension('routing')->getPath("franbella_site_homepage");
         echo "\"><img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("imagens/banner.png"), "html", null, true);
@@ -119,39 +142,39 @@ class __TwigTemplate_91733be7b949a0cc71d97652494fc5475f117a9da85c6dfd6e422c0976c
             </div>
             <ul id=\"menu\">
                 <li><a href=\"";
-        // line 42
+        // line 63
         echo $this->env->getExtension('routing')->getPath("franbella_site_linha");
         echo "\"><span>A Linha</span></a></li>
                 <li><a href=\"";
-        // line 43
+        // line 64
         echo $this->env->getExtension('routing')->getPath("franbella_site_espaco_manicure");
         echo "\"><span>Espa&ccedil;o da Manicure</span></a></li>
                 <li><a href=\"";
-        // line 44
+        // line 65
         echo $this->env->getExtension('routing')->getPath("franbella_site_agenda");
         echo "\"><span>Agenda/Eventos</span></a></li>
                 <li><a href=\"";
-        // line 45
+        // line 66
         echo $this->env->getExtension('routing')->getPath("franbella_site_fale_conosco");
         echo "\"><span>Fale Conosco</span></a></li>
                 <li><a href=\"";
-        // line 46
+        // line 67
         echo $this->env->getExtension('routing')->getPath("franbella_site_onde_encontro");
         echo "\"><span>Onde Encontro</span></a></li>
                 <li><a href=\"";
-        // line 47
+        // line 68
         echo $this->env->getExtension('routing')->getPath("franbella_site_seja_distribuidor");
         echo "\"><span>Seja Um Distribuidor</span></a></li>
             </ul>
             <div id=\"conteudo\">
             ";
-        // line 50
+        // line 71
         $this->displayBlock('conteudo', $context, $blocks);
-        // line 53
+        // line 74
         echo "                <a id=\"logo-facebook\" href=\"http://www.facebook.com/leifran.franbella\" target=\"_blank\">
                     <img id=\"facebook\" 
                          src=\"";
-        // line 55
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("imagens/facebook.png"), "html", null, true);
         echo "\" />
                 </a>
@@ -161,12 +184,12 @@ class __TwigTemplate_91733be7b949a0cc71d97652494fc5475f117a9da85c6dfd6e422c0976c
         ";
     }
 
-    // line 50
+    // line 71
     public function block_conteudo($context, array $blocks = array())
     {
-        // line 51
+        // line 72
         echo "                <img id=\"index\" src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("imagens/index.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("imagens/home.png"), "html", null, true);
         echo "\" />
             ";
     }
@@ -183,6 +206,6 @@ class __TwigTemplate_91733be7b949a0cc71d97652494fc5475f117a9da85c6dfd6e422c0976c
 
     public function getDebugInfo()
     {
-        return array (  168 => 51,  165 => 50,  155 => 55,  151 => 53,  149 => 50,  143 => 47,  139 => 46,  135 => 45,  131 => 44,  127 => 43,  123 => 42,  115 => 39,  110 => 36,  107 => 35,  100 => 28,  88 => 16,  82 => 13,  78 => 12,  73 => 11,  70 => 10,  63 => 8,  60 => 6,  54 => 5,  48 => 61,  46 => 35,  39 => 32,  36 => 10,  34 => 6,  30 => 5,  24 => 1,  69 => 47,  62 => 43,  58 => 26,  55 => 24,  43 => 12,  32 => 4,  29 => 3,);
+        return array (  191 => 72,  188 => 71,  178 => 76,  174 => 74,  172 => 71,  166 => 68,  162 => 67,  158 => 66,  154 => 65,  150 => 64,  146 => 63,  138 => 60,  133 => 57,  130 => 56,  123 => 49,  106 => 31,  100 => 22,  96 => 21,  88 => 19,  83 => 18,  80 => 17,  74 => 15,  69 => 14,  66 => 12,  60 => 11,  52 => 56,  40 => 12,  36 => 11,  24 => 1,  101 => 40,  95 => 37,  92 => 20,  71 => 19,  65 => 16,  61 => 15,  57 => 14,  54 => 82,  45 => 53,  42 => 17,  38 => 8,  32 => 4,  29 => 3,);
     }
 }

@@ -11,7 +11,7 @@
             </div>
         {% endfor %}
     
-    <form id="formContato" action="{{ path('franbella_site_fale_conosco') }}" 
+    <form id="formContato" action="{{ path('franbella_site_fale_conosco') }}" novalidate="novalidate"
           method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <input type="submit" value="Enviar" />
@@ -38,8 +38,15 @@
 <script type="text/javascript"
 src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
 <script type="text/javascript" src="{{ asset('js/gmap3.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/messages_pt_BR.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        
+        $('#formContato').validate({
+            errorPlacement: function(error, element) {}
+        });
+        
         $('.resposta-contato').fadeOut(5000);
         $('#mapa-localizacao').gmap3({
             map:{

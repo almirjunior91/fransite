@@ -1,0 +1,39 @@
+{% extends "FranbellaAdminBundle:Page:index.html.twig" %}
+{% block interno %}
+{% block tituloAdministracao %}
+    <h3 class="titulo-pagina-admin">Agenda - Fotos</h3>
+{% endblock %}
+    <div class="panel panel-default painel-conteudo-admin">
+        <div class="panel-heading conteudo-admin">
+            <div class="caixa-form">
+                {% block conteudoAdministracao %}
+                    <h4>Evento: {{ evento.nome }}</h4>
+                    <form name="cadastra-distribuidor" id="cadastra-distribuidor" 
+                          action="{{ path('franbella_admin_agenda_foto_cadastra', {'id_evento': evento.id}) }}" method="POST" {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Cadastrar" />
+                    </form>
+                    <p><a href="{{ path('franbella_admin_agenda_home') }}">Voltar para eventos</a></p>
+                {% endblock %}
+        </div>
+        <div class="caixa-registros">
+                <h4><strong>Fotos Cadastradas</strong></h4>
+                {% for foto in fotos %}
+                <p><img class="imagem-logo" src="{{ ('uploads/evento/fotos/' ~ foto.imagem) | imagine_filter('my_thumb') }}">
+                    <span style="padding-left: 10px"> 
+                        <a href="{{ path('franbella_admin_agenda_foto_exclui', {'id_evento': evento.id, 'id_foto': foto.id }) }}">Excluir</a>
+                    </span>
+                </p>
+                {% endfor %}
+            </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.resposta-contato').fadeOut(5000);
+        
+    });
+</script>
+{% endblock %}

@@ -8,26 +8,106 @@
         algumas informa&ccedil;&otilde;es</p>
     <br />
     
-    <form name="form-busca-lojas" action="#" method="POST">
+    <form name="form-busca-lojas" id="form-busca-lojas" action="{{ path('franbella_site_onde_encontro_busca') }}" method="POST">
         {{ form_widget(form) }}
-        <label for="loja" class="label_form">Procura Por?</label>
-        <select name="loja" id="loja">
-            <option value="1">TODOS</option>
-            <option value="2">Drogarias</option>
-            <option value="3">Supermercados</option>
-            <option value="4">Perfumarias</option>
-            <option value="5">Esmalterias</option>
-            <option value="6">Outros</option>
-        </select>
         <br />
         
         <input type="submit" value="Buscar" />
     </form>
-    <br />
-    <p class="subtitulo-produto">Resultados:</p>
+    <div id="caixa-resultados-pdv">
+        
+    </div>
+    {#<div class="logo-result"></div>
     <div class="logo-result"></div>
     <div class="logo-result"></div>
-    <div class="logo-result"></div>
-    <div class="logo-result"></div>
+    <div class="logo-result"></div>#}
 </div>
+<div class="modal-loading">
+    <p><span>Buscando Pontos de Venda...</span></p>
+</div>
+<div class="modal-background"></div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+        <script type="text/javascript" src="{{ asset('js/require.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        $('select#form_estado').change(function(){
+            //alert($(this).is('selected').text());
+            
+            
+            
+            $uf = $(this).find(':selected').text();
+            
+            $('#form_cidade').prop('selectedIndex', 0);
+            $('#form_bairro').prop('selectedIndex', 0);
+            
+            $.ajax({
+                type: "GET",
+                data: "data=" + $uf,
+                url:"{{ path('franbella_site_onde_encontro_carrega_cidade') }}",
+                success: function(msg){
+                    div = $(msg).find('select#form_cidade').parent();
+
+                    $('#form_cidade').html("");
+                    $('#form_cidade').parent().html(div);
+                    
+                    $('#form_cidade').on('change', function(){
+                        //$cidade = $(this).find(':selected').text();
+                        $cidade = $(this).val();
+                        
+                        $.ajax({
+                            type: "GET",
+                            data: "cidade=" + $cidade,
+                            url:"{{ path('franbella_site_onde_encontro_carrega_bairro') }}",
+                            success: function(msg){
+                                div = $(msg).find('select#form_bairro').parent();
+
+                                $('#form_bairro').html("");
+                                $('#form_bairro').parent().html(div);
+                                //$('select#form-cidade').html("");
+                           }, 
+                           error: function(request, message, error){
+                                    alert("Erro!! "+ message);
+                                    console.log(message+" "+error+" "+request);
+                            }
+                       });
+                        
+                    });
+                    
+               }
+           });
+
+        });
+        
+        $('#form-busca-lojas').submit(function(){
+            
+            $('.modal-background').fadeIn(500);
+            $('.modal-loading').fadeIn(500);
+            
+            $(this).ajaxSubmit(function(data){
+                
+                $('#caixa-resultados-pdv').html(data);
+                
+                $('.modal-background').fadeOut(500);
+                $('.modal-loading').fadeOut(500);
+                
+                $('#caixa-resultados-pdv').niceScroll({
+                    cursorcolor: '#962169'
+                });
+                
+            });
+            
+            return false;
+        });
+        
+    });
+            require.config({
+                    baseUrl: '{{ asset('js') }}',
+                    paths: {
+                        jquery: 'jquery'
+                    }
+                });
+</script>
 {% endblock %}

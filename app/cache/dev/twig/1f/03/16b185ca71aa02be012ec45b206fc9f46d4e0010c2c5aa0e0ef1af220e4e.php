@@ -55,7 +55,7 @@ class __TwigTemplate_1f0316b185ca71aa02be012ec45b206fc9f46d4e0010c2c5aa0e0ef1af2
     <form id=\"formContato\" action=\"";
         // line 14
         echo $this->env->getExtension('routing')->getPath("franbella_site_fale_conosco");
-        echo "\" 
+        echo "\" novalidate=\"novalidate\"
           method=\"post\" ";
         // line 15
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'enctype');
@@ -100,8 +100,21 @@ src=\"http://maps.google.com/maps/api/js?sensor=false&amp;language=en\"></script
         // line 40
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/gmap3.js"), "html", null, true);
         echo "\"></script>
+<script type=\"text/javascript\" src=\"";
+        // line 41
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.validate.min.js"), "html", null, true);
+        echo "\"></script>
+<script type=\"text/javascript\" src=\"";
+        // line 42
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/messages_pt_BR.min.js"), "html", null, true);
+        echo "\"></script>
 <script type=\"text/javascript\">
     \$(document).ready(function(){
+        
+        \$('#formContato').validate({
+            errorPlacement: function(error, element) {}
+        });
+        
         \$('.resposta-contato').fadeOut(5000);
         \$('#mapa-localizacao').gmap3({
             map:{
@@ -138,6 +151,6 @@ src=\"http://maps.google.com/maps/api/js?sensor=false&amp;language=en\"></script
 
     public function getDebugInfo()
     {
-        return array (  101 => 40,  95 => 37,  92 => 36,  71 => 19,  65 => 16,  61 => 15,  57 => 14,  54 => 13,  45 => 10,  42 => 9,  38 => 8,  32 => 4,  29 => 3,);
+        return array (  109 => 42,  105 => 41,  101 => 40,  95 => 37,  92 => 36,  71 => 19,  65 => 16,  61 => 15,  57 => 14,  54 => 13,  45 => 10,  42 => 9,  38 => 8,  32 => 4,  29 => 3,);
     }
 }

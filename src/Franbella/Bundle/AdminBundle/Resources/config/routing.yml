@@ -6,6 +6,79 @@ franbella_admin_video_home:
     pattern: /admin/videos
     defaults: { _controller: FranbellaAdminBundle:Video:index }
     
+franbella_admin_distribuidor_cadastra:
+    pattern: /admin/distribuidores/cadastra/{id_distribuidor}
+    defaults: { _controller: FranbellaAdminBundle:Distribuidor:cadastra, id_distribuidor: -1 }
+    
+franbella_admin_distribuidor_exclui:
+    pattern: /admin/distribuidores/exclui/{id_distribuidor}
+    defaults: { _controller: FranbellaAdminBundle:Distribuidor:exclui }
+    
 franbella_admin_distribuidor_home:
-    pattern: /admin/distribuidores
-    defaults: { _controller: FranbellaAdminBundle:Distribuidor:index }
+    pattern: /admin/distribuidores/{id_distribuidor}
+    defaults: { _controller: FranbellaAdminBundle:Distribuidor:index, id_distribuidor: '' }
+
+franbella_admin_agenda_cadastra:
+    pattern: /admin/agenda/cadastra/{id_evento}
+    defaults: { _controller: FranbellaAdminBundle:Agenda:cadastra, id_evento: -1 }
+    
+franbella_admin_agenda_exclui:
+    pattern: /admin/agenda/exclui/{id_evento}
+    defaults: { _controller: FranbellaAdminBundle:Agenda:exclui }    
+
+franbella_admin_agenda_foto_cadastra:
+    pattern: /admin/agenda/{id_evento}/fotos/cadastra
+    defaults: { _controller: FranbellaAdminBundle:Agenda:cadastraFoto, id_evento: -1 } 
+    
+franbella_admin_agenda_foto_exclui:
+    pattern: /admin/agenda/{id_evento}/fotos/exclui/{id_foto}
+    defaults: { _controller: FranbellaAdminBundle:Agenda:excluiFoto, id_evento: -1, id_foto: -1 } 
+    
+franbella_admin_agenda_fotos:
+    pattern: /admin/agenda/{id_evento}/fotos
+    defaults: { _controller: FranbellaAdminBundle:Agenda:fotos } 
+    
+franbella_admin_agenda_home:
+    pattern: /admin/agenda/{id_evento}
+    defaults: { _controller: FranbellaAdminBundle:Agenda:index, id_evento: '' }
+    
+franbella_admin_contato_home:
+    pattern: /admin/contato
+    defaults: { _controller: FranbellaAdminBundle:Contato:index }
+    
+franbella_admin_contato_detalhes:
+    pattern: /admin/contato/{id_contato}/detalhes
+    defaults: { _controller: FranbellaAdminBundle:Contato:detalhes, id_contato: -1 }
+    
+franbella_admin_proposta_distribuidor_home:
+    pattern: /admin/proposta/distribuidores
+    defaults: { _controller: FranbellaAdminBundle:Distribuidor:proposta }
+    
+franbella_admin_distribuidor_proposta_detalhes:
+    pattern: /admin/proposta/{id_distribuidor}/detalhes
+    defaults: { _controller: FranbellaAdminBundle:Distribuidor:detalhes, id_distribuidor: -1 }
+
+franbella_admin_pdv_tipo_cadastra:
+    pattern: /admin/pdv/tipo/cadastra/{id_tipo_pdv}
+    defaults: { _controller: FranbellaAdminBundle:TipoPDV:cadastra, id_tipo_pdv: '-1' }
+    
+franbella_admin_pdv_tipo_exclui:
+    pattern: /admin/pdv/tipo/exclui/{id_tipo_pdv}
+    defaults: { _controller: FranbellaAdminBundle:TipoPDV:exclui, id_tipo_pdv: '-1' } 
+
+franbella_admin_pdv_cadastra:
+    pattern: /admin/pdv/cadastra/{id_pdv}
+    defaults: { _controller: FranbellaAdminBundle:PDV:cadastra, id_pdv: '-1' }
+    
+franbella_admin_pdv_exclui:
+    pattern: /admin/pdv/exclui/{id_pdv}
+    defaults: { _controller: FranbellaAdminBundle:PDV:exclui, id_pdv: '-1' } 
+    
+franbella_admin_pdv_tipo_home:
+    pattern: /admin/pdv/tipo/{id_tipo_pdv}
+    defaults: { _controller: FranbellaAdminBundle:TipoPDV:index, id_tipo_pdv: '' }
+    
+franbella_admin_pdv_home:
+    pattern: /admin/pdv/{id_pdv}
+    defaults: { _controller: FranbellaAdminBundle:PDV:index, id_pdv: '' }
+    

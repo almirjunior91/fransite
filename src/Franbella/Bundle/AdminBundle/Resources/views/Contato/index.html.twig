@@ -1,0 +1,69 @@
+{% extends "FranbellaAdminBundle:Page:index.html.twig" %}
+{% block interno %}
+{% block tituloAdministracao %}
+    <h3 class="titulo-pagina-admin">Mensagens</h3>
+{% endblock %}
+    <div class="panel panel-default painel-conteudo-admin">
+        <div class="panel-heading conteudo-admin">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <td>Assunto</td>
+                        <td>Nome</td>
+                        <td>Email</td>
+                        <td>Data Envio</td>
+                        <td>Lida</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mensagem in mensagensTodas %}
+                    {% if mensagem.lida %}
+                        <tr data-toggle="modal" data-target="#myModal" 
+                            href="{{ path('franbella_admin_contato_detalhes', {'id_contato': mensagem.id} ) }}">
+                    {% else %}
+                        <tr style="font-weight: bold" data-toggle="modal" data-target="#myModal" 
+                            href="{{ path('franbella_admin_contato_detalhes', {'id_contato': mensagem.id} ) }}">
+                    {% endif %}
+                    
+                        <td>{{ mensagem.assunto }}</td>
+                        <td>{{ mensagem.nome }}</td>
+                        <td>{{ mensagem.email }}</td>
+                        <td>{{ mensagem.dataEnvio|date('d/m/Y H:i:s', 'America/Sao_Paulo') }}</td>
+                        <td class="status-lida">
+                            {% if mensagem.lida %}
+                                Sim
+                            {% else %}
+                                N&atilde;o
+                            {% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        
+        $('#myModal').on('hide.bs.modal', function (e) {
+            window.location = "{{ path('franbella_admin_contato_home') }}";
+        });
+        
+        {#$('table tbody > tr').click(function(){
+            $(this).css('font-weight','normal');
+            $(this).children('status-lida').text("Sim");
+        });#}
+    });
+</script>
+{% endblock %}

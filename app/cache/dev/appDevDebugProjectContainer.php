@@ -115,6 +115,33 @@ class appDevDebugProjectContainer extends Container
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
+            'liip_imagine' => 'getLiipImagineService',
+            'liip_imagine.binary.loader.default' => 'getLiipImagine_Binary_Loader_DefaultService',
+            'liip_imagine.binary.loader.prototype.filesystem' => 'getLiipImagine_Binary_Loader_Prototype_FilesystemService',
+            'liip_imagine.binary.loader.prototype.stream' => 'getLiipImagine_Binary_Loader_Prototype_StreamService',
+            'liip_imagine.binary.mime_type_guesser' => 'getLiipImagine_Binary_MimeTypeGuesserService',
+            'liip_imagine.cache.manager' => 'getLiipImagine_Cache_ManagerService',
+            'liip_imagine.cache.resolver.default' => 'getLiipImagine_Cache_Resolver_DefaultService',
+            'liip_imagine.cache.resolver.no_cache_web_path' => 'getLiipImagine_Cache_Resolver_NoCacheWebPathService',
+            'liip_imagine.cache.signer' => 'getLiipImagine_Cache_SignerService',
+            'liip_imagine.controller' => 'getLiipImagine_ControllerService',
+            'liip_imagine.data.manager' => 'getLiipImagine_Data_ManagerService',
+            'liip_imagine.extension_guesser' => 'getLiipImagine_ExtensionGuesserService',
+            'liip_imagine.filter.configuration' => 'getLiipImagine_Filter_ConfigurationService',
+            'liip_imagine.filter.loader.auto_rotate' => 'getLiipImagine_Filter_Loader_AutoRotateService',
+            'liip_imagine.filter.loader.background' => 'getLiipImagine_Filter_Loader_BackgroundService',
+            'liip_imagine.filter.loader.crop' => 'getLiipImagine_Filter_Loader_CropService',
+            'liip_imagine.filter.loader.paste' => 'getLiipImagine_Filter_Loader_PasteService',
+            'liip_imagine.filter.loader.relative_resize' => 'getLiipImagine_Filter_Loader_RelativeResizeService',
+            'liip_imagine.filter.loader.resize' => 'getLiipImagine_Filter_Loader_ResizeService',
+            'liip_imagine.filter.loader.strip' => 'getLiipImagine_Filter_Loader_StripService',
+            'liip_imagine.filter.loader.thumbnail' => 'getLiipImagine_Filter_Loader_ThumbnailService',
+            'liip_imagine.filter.loader.upscale' => 'getLiipImagine_Filter_Loader_UpscaleService',
+            'liip_imagine.filter.loader.watermark' => 'getLiipImagine_Filter_Loader_WatermarkService',
+            'liip_imagine.filter.manager' => 'getLiipImagine_Filter_ManagerService',
+            'liip_imagine.form.type.image' => 'getLiipImagine_Form_Type_ImageService',
+            'liip_imagine.mime_type_guesser' => 'getLiipImagine_MimeTypeGuesserService',
+            'liip_imagine.templating.helper' => 'getLiipImagine_Templating_HelperService',
             'locale_listener' => 'getLocaleListenerService',
             'logger' => 'getLoggerService',
             'monolog.handler.chromephp' => 'getMonolog_Handler_ChromephpService',
@@ -516,7 +543,7 @@ class appDevDebugProjectContainer extends Container
         $this->services['debug.templating.engine.php'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('debug.stopwatch'), $this->get('templating.globals'));
 
         $instance->setCharset('UTF-8');
-        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic'));
+        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic', 'imagine' => 'liip_imagine.templating.helper'));
 
         return $instance;
     }
@@ -772,7 +799,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getForm_RegistryService()
     {
-        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity', 'bfos_brasil_cidade_entity' => 'bfos_brasil.form_type.ajax_choice', 'bfos_cidade_choice' => 'bfos_brasil.form.type.cidade_choice'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
+        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity', 'bfos_brasil_cidade_entity' => 'bfos_brasil.form_type.ajax_choice', 'bfos_cidade_choice' => 'bfos_brasil.form.type.cidade_choice', 'liip_imagine_image' => 'liip_imagine.form.type.image'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
     }
 
     /**
@@ -1372,6 +1399,379 @@ class appDevDebugProjectContainer extends Container
     protected function getKernelService()
     {
         throw new RuntimeException('You have requested a synthetic service ("kernel"). The DIC does not know how to construct this service.');
+    }
+
+    /**
+     * Gets the 'liip_imagine' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Imagine\Gd\Imagine A Imagine\Gd\Imagine instance.
+     */
+    protected function getLiipImagineService()
+    {
+        return $this->services['liip_imagine'] = new \Imagine\Gd\Imagine();
+    }
+
+    /**
+     * Gets the 'liip_imagine.binary.loader.default' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Binary\Loader\FileSystemLoader A Liip\ImagineBundle\Binary\Loader\FileSystemLoader instance.
+     */
+    protected function getLiipImagine_Binary_Loader_DefaultService()
+    {
+        return $this->services['liip_imagine.binary.loader.default'] = new \Liip\ImagineBundle\Binary\Loader\FileSystemLoader($this->get('liip_imagine.mime_type_guesser'), $this->get('liip_imagine.extension_guesser'), 'C:/xampp2/htdocs/FranbellaNovo/app/../web');
+    }
+
+    /**
+     * Gets the 'liip_imagine.binary.loader.prototype.filesystem' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Binary\Loader\FileSystemLoader A Liip\ImagineBundle\Binary\Loader\FileSystemLoader instance.
+     */
+    protected function getLiipImagine_Binary_Loader_Prototype_FilesystemService()
+    {
+        return $this->services['liip_imagine.binary.loader.prototype.filesystem'] = new \Liip\ImagineBundle\Binary\Loader\FileSystemLoader($this->get('liip_imagine.mime_type_guesser'), $this->get('liip_imagine.extension_guesser'), '');
+    }
+
+    /**
+     * Gets the 'liip_imagine.binary.loader.prototype.stream' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Binary\Loader\StreamLoader A Liip\ImagineBundle\Binary\Loader\StreamLoader instance.
+     */
+    protected function getLiipImagine_Binary_Loader_Prototype_StreamService()
+    {
+        return $this->services['liip_imagine.binary.loader.prototype.stream'] = new \Liip\ImagineBundle\Binary\Loader\StreamLoader('', '');
+    }
+
+    /**
+     * Gets the 'liip_imagine.binary.mime_type_guesser' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Binary\SimpleMimeTypeGuesser A Liip\ImagineBundle\Binary\SimpleMimeTypeGuesser instance.
+     */
+    protected function getLiipImagine_Binary_MimeTypeGuesserService()
+    {
+        return $this->services['liip_imagine.binary.mime_type_guesser'] = new \Liip\ImagineBundle\Binary\SimpleMimeTypeGuesser($this->get('liip_imagine.mime_type_guesser'));
+    }
+
+    /**
+     * Gets the 'liip_imagine.cache.manager' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Cache\CacheManager A Liip\ImagineBundle\Imagine\Cache\CacheManager instance.
+     */
+    protected function getLiipImagine_Cache_ManagerService()
+    {
+        $this->services['liip_imagine.cache.manager'] = $instance = new \Liip\ImagineBundle\Imagine\Cache\CacheManager($this->get('liip_imagine.filter.configuration'), $this->get('router'), $this->get('liip_imagine.cache.signer'), $this->get('event_dispatcher'), 'default');
+
+        $instance->addResolver('default', $this->get('liip_imagine.cache.resolver.default'));
+        $instance->addResolver('no_cache', $this->get('liip_imagine.cache.resolver.no_cache_web_path'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'liip_imagine.cache.resolver.default' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Cache\Resolver\WebPathResolver A Liip\ImagineBundle\Imagine\Cache\Resolver\WebPathResolver instance.
+     */
+    protected function getLiipImagine_Cache_Resolver_DefaultService()
+    {
+        return $this->services['liip_imagine.cache.resolver.default'] = new \Liip\ImagineBundle\Imagine\Cache\Resolver\WebPathResolver($this->get('filesystem'), $this->get('router.request_context'), 'C:/xampp2/htdocs/FranbellaNovo/app/../web', 'media/cache/resolve');
+    }
+
+    /**
+     * Gets the 'liip_imagine.cache.resolver.no_cache_web_path' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Cache\Resolver\NoCacheWebPathResolver A Liip\ImagineBundle\Imagine\Cache\Resolver\NoCacheWebPathResolver instance.
+     */
+    protected function getLiipImagine_Cache_Resolver_NoCacheWebPathService()
+    {
+        return $this->services['liip_imagine.cache.resolver.no_cache_web_path'] = new \Liip\ImagineBundle\Imagine\Cache\Resolver\NoCacheWebPathResolver($this->get('router.request_context'));
+    }
+
+    /**
+     * Gets the 'liip_imagine.cache.signer' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Cache\Signer A Liip\ImagineBundle\Imagine\Cache\Signer instance.
+     */
+    protected function getLiipImagine_Cache_SignerService()
+    {
+        return $this->services['liip_imagine.cache.signer'] = new \Liip\ImagineBundle\Imagine\Cache\Signer('eeee2f7be844ad312f7ffdce6079cc67');
+    }
+
+    /**
+     * Gets the 'liip_imagine.controller' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Controller\ImagineController A Liip\ImagineBundle\Controller\ImagineController instance.
+     */
+    protected function getLiipImagine_ControllerService()
+    {
+        return $this->services['liip_imagine.controller'] = new \Liip\ImagineBundle\Controller\ImagineController($this->get('liip_imagine.data.manager'), $this->get('liip_imagine.filter.manager'), $this->get('liip_imagine.cache.manager'), $this->get('liip_imagine.cache.signer'));
+    }
+
+    /**
+     * Gets the 'liip_imagine.data.manager' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Data\DataManager A Liip\ImagineBundle\Imagine\Data\DataManager instance.
+     */
+    protected function getLiipImagine_Data_ManagerService()
+    {
+        $this->services['liip_imagine.data.manager'] = $instance = new \Liip\ImagineBundle\Imagine\Data\DataManager($this->get('liip_imagine.binary.mime_type_guesser'), $this->get('liip_imagine.extension_guesser'), $this->get('liip_imagine.filter.configuration'), 'default');
+
+        $instance->addLoader('default', $this->get('liip_imagine.binary.loader.default'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'liip_imagine.extension_guesser' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesserInterface A Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesserInterface instance.
+     */
+    protected function getLiipImagine_ExtensionGuesserService()
+    {
+        return $this->services['liip_imagine.extension_guesser'] = call_user_func(array('Symfony\\Component\\HttpFoundation\\File\\MimeType\\ExtensionGuesser', 'getInstance'));
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.configuration' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\FilterConfiguration A Liip\ImagineBundle\Imagine\Filter\FilterConfiguration instance.
+     */
+    protected function getLiipImagine_Filter_ConfigurationService()
+    {
+        return $this->services['liip_imagine.filter.configuration'] = new \Liip\ImagineBundle\Imagine\Filter\FilterConfiguration(array('cache' => array('quality' => 100, 'cache' => NULL, 'data_loader' => NULL, 'filters' => array()), 'my_thumb' => array('quality' => 75, 'filters' => array('thumbnail' => array('size' => array(0 => 240, 1 => 180), 'mode' => 'inset')), 'cache' => NULL, 'data_loader' => NULL), 'my_thumb_dist' => array('quality' => 100, 'filters' => array('thumbnail' => array('size' => array(0 => 120, 1 => 90), 'mode' => 'inset')), 'cache' => NULL, 'data_loader' => NULL)));
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.auto_rotate' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\AutoRotateFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\AutoRotateFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_AutoRotateService()
+    {
+        return $this->services['liip_imagine.filter.loader.auto_rotate'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\AutoRotateFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.background' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\BackgroundFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\BackgroundFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_BackgroundService()
+    {
+        return $this->services['liip_imagine.filter.loader.background'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\BackgroundFilterLoader($this->get('liip_imagine'));
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.crop' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\CropFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\CropFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_CropService()
+    {
+        return $this->services['liip_imagine.filter.loader.crop'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\CropFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.paste' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\PasteFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\PasteFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_PasteService()
+    {
+        return $this->services['liip_imagine.filter.loader.paste'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\PasteFilterLoader($this->get('liip_imagine'), 'C:/xampp2/htdocs/FranbellaNovo/app');
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.relative_resize' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\RelativeResizeFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\RelativeResizeFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_RelativeResizeService()
+    {
+        return $this->services['liip_imagine.filter.loader.relative_resize'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\RelativeResizeFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.resize' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\ResizeFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\ResizeFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_ResizeService()
+    {
+        return $this->services['liip_imagine.filter.loader.resize'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\ResizeFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.strip' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\StripFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\StripFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_StripService()
+    {
+        return $this->services['liip_imagine.filter.loader.strip'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\StripFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.thumbnail' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_ThumbnailService()
+    {
+        return $this->services['liip_imagine.filter.loader.thumbnail'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.upscale' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\UpscaleFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\UpscaleFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_UpscaleService()
+    {
+        return $this->services['liip_imagine.filter.loader.upscale'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\UpscaleFilterLoader();
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.loader.watermark' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\Loader\WatermarkFilterLoader A Liip\ImagineBundle\Imagine\Filter\Loader\WatermarkFilterLoader instance.
+     */
+    protected function getLiipImagine_Filter_Loader_WatermarkService()
+    {
+        return $this->services['liip_imagine.filter.loader.watermark'] = new \Liip\ImagineBundle\Imagine\Filter\Loader\WatermarkFilterLoader($this->get('liip_imagine'), 'C:/xampp2/htdocs/FranbellaNovo/app');
+    }
+
+    /**
+     * Gets the 'liip_imagine.filter.manager' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Imagine\Filter\FilterManager A Liip\ImagineBundle\Imagine\Filter\FilterManager instance.
+     */
+    protected function getLiipImagine_Filter_ManagerService()
+    {
+        $this->services['liip_imagine.filter.manager'] = $instance = new \Liip\ImagineBundle\Imagine\Filter\FilterManager($this->get('liip_imagine.filter.configuration'), $this->get('liip_imagine'));
+
+        $instance->addLoader('relative_resize', $this->get('liip_imagine.filter.loader.relative_resize'));
+        $instance->addLoader('resize', $this->get('liip_imagine.filter.loader.resize'));
+        $instance->addLoader('thumbnail', $this->get('liip_imagine.filter.loader.thumbnail'));
+        $instance->addLoader('crop', $this->get('liip_imagine.filter.loader.crop'));
+        $instance->addLoader('paste', $this->get('liip_imagine.filter.loader.paste'));
+        $instance->addLoader('watermark', $this->get('liip_imagine.filter.loader.watermark'));
+        $instance->addLoader('background', $this->get('liip_imagine.filter.loader.background'));
+        $instance->addLoader('strip', $this->get('liip_imagine.filter.loader.strip'));
+        $instance->addLoader('upscale', $this->get('liip_imagine.filter.loader.upscale'));
+        $instance->addLoader('auto_rotate', $this->get('liip_imagine.filter.loader.auto_rotate'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'liip_imagine.form.type.image' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Form\Type\ImageType A Liip\ImagineBundle\Form\Type\ImageType instance.
+     */
+    protected function getLiipImagine_Form_Type_ImageService()
+    {
+        return $this->services['liip_imagine.form.type.image'] = new \Liip\ImagineBundle\Form\Type\ImageType();
+    }
+
+    /**
+     * Gets the 'liip_imagine.mime_type_guesser' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface A Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface instance.
+     */
+    protected function getLiipImagine_MimeTypeGuesserService()
+    {
+        return $this->services['liip_imagine.mime_type_guesser'] = call_user_func(array('Symfony\\Component\\HttpFoundation\\File\\MimeType\\MimeTypeGuesser', 'getInstance'));
+    }
+
+    /**
+     * Gets the 'liip_imagine.templating.helper' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liip\ImagineBundle\Templating\Helper\ImagineHelper A Liip\ImagineBundle\Templating\Helper\ImagineHelper instance.
+     */
+    protected function getLiipImagine_Templating_HelperService()
+    {
+        return $this->services['liip_imagine.templating.helper'] = new \Liip\ImagineBundle\Templating\Helper\ImagineHelper($this->get('liip_imagine.cache.manager'));
     }
 
     /**
@@ -2868,10 +3268,11 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig', 1 => 'BFOSBrasilBundle:Form:form_div_layout.html.twig')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE))));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig', 1 => 'BFOSBrasilBundle:Form:form_div_layout.html.twig', 2 => 'LiipImagineBundle:Form:form_div_layout.html.twig')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE))));
         $instance->addExtension(new \Twig_Extension_Debug());
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
+        $instance->addExtension(new \Liip\ImagineBundle\Templating\ImagineExtension($this->get('liip_imagine.cache.manager')));
         $instance->addGlobal('app', $this->get('templating.globals'));
 
         return $instance;
@@ -2923,6 +3324,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('C:\\xampp2\\htdocs\\FranbellaNovo\\src\\Franbella\\Bundle\\SiteBundle/Resources/views', 'FranbellaSite');
         $instance->addPath('C:\\xampp2\\htdocs\\FranbellaNovo\\vendor\\brazilianfriendsofsymfony\\brasil-bundle\\BFOS\\BrasilBundle/Resources/views', 'BFOSBrasil');
         $instance->addPath('C:\\xampp2\\htdocs\\FranbellaNovo\\src\\Franbella\\Bundle\\AdminBundle/Resources/views', 'FranbellaAdmin');
+        $instance->addPath('C:\\xampp2\\htdocs\\FranbellaNovo\\vendor\\liip\\imagine-bundle\\Liip\\ImagineBundle/Resources/views', 'LiipImagine');
         $instance->addPath('C:\\xampp2\\htdocs\\FranbellaNovo\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('C:\\xampp2\\htdocs\\FranbellaNovo\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('C:/xampp2/htdocs/FranbellaNovo/app/Resources/views');
@@ -3359,6 +3761,7 @@ class appDevDebugProjectContainer extends Container
                 'DoctrineFixturesBundle' => 'Doctrine\\Bundle\\FixturesBundle\\DoctrineFixturesBundle',
                 'BFOSBrasilBundle' => 'BFOS\\BrasilBundle\\BFOSBrasilBundle',
                 'FranbellaAdminBundle' => 'Franbella\\Bundle\\AdminBundle\\FranbellaAdminBundle',
+                'LiipImagineBundle' => 'Liip\\ImagineBundle\\LiipImagineBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
@@ -3375,6 +3778,9 @@ class appDevDebugProjectContainer extends Container
             'mailer_host' => 'smtp.valeservicefarma.com.br',
             'mailer_user' => 'almir@valeservicefarma.com.br',
             'mailer_password' => 'almir123',
+            'auth_mode' => 'login',
+            'port' => 587,
+            'encryption' => 'tls',
             'locale' => 'pt',
             'secret' => 'eeee2f7be844ad312f7ffdce6079cc67',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
@@ -3650,6 +4056,7 @@ class appDevDebugProjectContainer extends Container
             'twig.form.resources' => array(
                 0 => 'form_div_layout.html.twig',
                 1 => 'BFOSBrasilBundle:Form:form_div_layout.html.twig',
+                2 => 'LiipImagineBundle:Form:form_div_layout.html.twig',
             ),
             'debug.templating.engine.twig.class' => 'Symfony\\Bundle\\TwigBundle\\Debug\\TimedTwigEngine',
             'twig.options' => array(
@@ -3839,6 +4246,79 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
             'bfos_brasil.form_type.bfos_brasil_cidade_entity.class' => 'BFOS\\BrasilBundle\\Doctrine\\Form\\Type\\CidadeEntityType',
             'bfos_brasil.form.type.cidade_choice.class' => 'BFOS\\BrasilBundle\\Doctrine\\Form\\Type\\CidadeChoiceType',
+            'liip_imagine.filter.configuration.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\FilterConfiguration',
+            'liip_imagine.filter.manager.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\FilterManager',
+            'liip_imagine.data.manager.class' => 'Liip\\ImagineBundle\\Imagine\\Data\\DataManager',
+            'liip_imagine.cache.manager.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\CacheManager',
+            'liip_imagine.cache.signer.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\Signer',
+            'liip_imagine.binary.mime_type_guesser.class' => 'Liip\\ImagineBundle\\Binary\\SimpleMimeTypeGuesser',
+            'liip_imagine.controller.class' => 'Liip\\ImagineBundle\\Controller\\ImagineController',
+            'liip_imagine.twig.extension.class' => 'Liip\\ImagineBundle\\Templating\\ImagineExtension',
+            'liip_imagine.templating.helper.class' => 'Liip\\ImagineBundle\\Templating\\Helper\\ImagineHelper',
+            'liip_imagine.gd.class' => 'Imagine\\Gd\\Imagine',
+            'liip_imagine.imagick.class' => 'Imagine\\Imagick\\Imagine',
+            'liip_imagine.gmagick.class' => 'Imagine\\Gmagick\\Imagine',
+            'liip_imagine.filter.loader.relative_resize.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\RelativeResizeFilterLoader',
+            'liip_imagine.filter.loader.resize.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\ResizeFilterLoader',
+            'liip_imagine.filter.loader.thumbnail.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\ThumbnailFilterLoader',
+            'liip_imagine.filter.loader.crop.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\CropFilterLoader',
+            'liip_imagine.filter.loader.paste.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\PasteFilterLoader',
+            'liip_imagine.filter.loader.watermark.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\WatermarkFilterLoader',
+            'liip_imagine.filter.loader.strip.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\StripFilterLoader',
+            'liip_imagine.filter.loader.background.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\BackgroundFilterLoader',
+            'liip_imagine.filter.loader.upscale.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\UpscaleFilterLoader',
+            'liip_imagine.filter.loader.auto_rotate.class' => 'Liip\\ImagineBundle\\Imagine\\Filter\\Loader\\AutoRotateFilterLoader',
+            'liip_imagine.binary.loader.filesystem.class' => 'Liip\\ImagineBundle\\Binary\\Loader\\FileSystemLoader',
+            'liip_imagine.binary.loader.stream.class' => 'Liip\\ImagineBundle\\Binary\\Loader\\StreamLoader',
+            'liip_imagine.cache.resolver.web_path.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\Resolver\\WebPathResolver',
+            'liip_imagine.cache.resolver.no_cache_web_path.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\Resolver\\NoCacheWebPathResolver',
+            'liip_imagine.cache.resolver.aws_s3.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\Resolver\\AwsS3Resolver',
+            'liip_imagine.cache.resolver.cache.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\Resolver\\CacheResolver',
+            'liip_imagine.cache.resolver.proxy.class' => 'Liip\\ImagineBundle\\Imagine\\Cache\\Resolver\\ProxyResolver',
+            'liip_imagine.form.type.image.class' => 'Liip\\ImagineBundle\\Form\\Type\\ImageType',
+            'liip_imagine.meta_data.reader.class' => 'Imagine\\Image\\Metadata\\ExifMetadataReader',
+            'liip_imagine.cache.resolver.default' => 'default',
+            'liip_imagine.filter_sets' => array(
+                'cache' => array(
+                    'quality' => 100,
+                    'cache' => NULL,
+                    'data_loader' => NULL,
+                    'filters' => array(
+
+                    ),
+                ),
+                'my_thumb' => array(
+                    'quality' => 75,
+                    'filters' => array(
+                        'thumbnail' => array(
+                            'size' => array(
+                                0 => 240,
+                                1 => 180,
+                            ),
+                            'mode' => 'inset',
+                        ),
+                    ),
+                    'cache' => NULL,
+                    'data_loader' => NULL,
+                ),
+                'my_thumb_dist' => array(
+                    'quality' => 100,
+                    'filters' => array(
+                        'thumbnail' => array(
+                            'size' => array(
+                                0 => 120,
+                                1 => 90,
+                            ),
+                            'mode' => 'inset',
+                        ),
+                    ),
+                    'cache' => NULL,
+                    'data_loader' => NULL,
+                ),
+            ),
+            'liip_imagine.binary.loader.default' => 'default',
+            'liip_imagine.controller.filter_action' => 'liip_imagine.controller:filterAction',
+            'liip_imagine.controller.filter_runtime_action' => 'liip_imagine.controller:filterRuntimeAction',
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',

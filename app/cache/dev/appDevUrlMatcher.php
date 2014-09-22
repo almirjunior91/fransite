@@ -144,9 +144,120 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\VideoController::indexAction',  '_route' => 'franbella_admin_video_home',);
             }
 
-            // franbella_admin_distribuidor_home
-            if ($pathinfo === '/admin/distribuidores') {
-                return array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\DistribuidorController::indexAction',  '_route' => 'franbella_admin_distribuidor_home',);
+            if (0 === strpos($pathinfo, '/admin/distribuidores')) {
+                // franbella_admin_distribuidor_cadastra
+                if (0 === strpos($pathinfo, '/admin/distribuidores/cadastra') && preg_match('#^/admin/distribuidores/cadastra(?:/(?P<id_distribuidor>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_distribuidor_cadastra')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\DistribuidorController::cadastraAction',  'id_distribuidor' => -1,));
+                }
+
+                // franbella_admin_distribuidor_exclui
+                if (0 === strpos($pathinfo, '/admin/distribuidores/exclui') && preg_match('#^/admin/distribuidores/exclui/(?P<id_distribuidor>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_distribuidor_exclui')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\DistribuidorController::excluiAction',));
+                }
+
+                // franbella_admin_distribuidor_home
+                if (preg_match('#^/admin/distribuidores(?:/(?P<id_distribuidor>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_distribuidor_home')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\DistribuidorController::indexAction',  'id_distribuidor' => '',));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/agenda')) {
+                // franbella_admin_agenda_cadastra
+                if (0 === strpos($pathinfo, '/admin/agenda/cadastra') && preg_match('#^/admin/agenda/cadastra(?:/(?P<id_evento>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_agenda_cadastra')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\AgendaController::cadastraAction',  'id_evento' => -1,));
+                }
+
+                // franbella_admin_agenda_exclui
+                if (0 === strpos($pathinfo, '/admin/agenda/exclui') && preg_match('#^/admin/agenda/exclui/(?P<id_evento>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_agenda_exclui')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\AgendaController::excluiAction',));
+                }
+
+                // franbella_admin_agenda_foto_cadastra
+                if (preg_match('#^/admin/agenda/(?P<id_evento>[^/]++)/fotos/cadastra$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_agenda_foto_cadastra')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\AgendaController::cadastraFotoAction',  'id_evento' => -1,));
+                }
+
+                // franbella_admin_agenda_foto_exclui
+                if (preg_match('#^/admin/agenda/(?P<id_evento>[^/]++)/fotos/exclui(?:/(?P<id_foto>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_agenda_foto_exclui')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\AgendaController::excluiFotoAction',  'id_evento' => -1,  'id_foto' => -1,));
+                }
+
+                // franbella_admin_agenda_fotos
+                if (preg_match('#^/admin/agenda/(?P<id_evento>[^/]++)/fotos$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_agenda_fotos')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\AgendaController::fotosAction',));
+                }
+
+                // franbella_admin_agenda_home
+                if (preg_match('#^/admin/agenda(?:/(?P<id_evento>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_agenda_home')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\AgendaController::indexAction',  'id_evento' => '',));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/contato')) {
+                // franbella_admin_contato_home
+                if ($pathinfo === '/admin/contato') {
+                    return array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\ContatoController::indexAction',  '_route' => 'franbella_admin_contato_home',);
+                }
+
+                // franbella_admin_contato_detalhes
+                if (preg_match('#^/admin/contato/(?P<id_contato>[^/]++)/detalhes$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_contato_detalhes')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\ContatoController::detalhesAction',  'id_contato' => -1,));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/p')) {
+                if (0 === strpos($pathinfo, '/admin/proposta')) {
+                    // franbella_admin_proposta_distribuidor_home
+                    if ($pathinfo === '/admin/proposta/distribuidores') {
+                        return array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\DistribuidorController::propostaAction',  '_route' => 'franbella_admin_proposta_distribuidor_home',);
+                    }
+
+                    // franbella_admin_distribuidor_proposta_detalhes
+                    if (preg_match('#^/admin/proposta/(?P<id_distribuidor>[^/]++)/detalhes$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_distribuidor_proposta_detalhes')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\DistribuidorController::detalhesAction',  'id_distribuidor' => -1,));
+                    }
+
+                }
+
+                if (0 === strpos($pathinfo, '/admin/pdv')) {
+                    if (0 === strpos($pathinfo, '/admin/pdv/tipo')) {
+                        // franbella_admin_pdv_tipo_cadastra
+                        if (0 === strpos($pathinfo, '/admin/pdv/tipo/cadastra') && preg_match('#^/admin/pdv/tipo/cadastra(?:/(?P<id_tipo_pdv>[^/]++))?$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_pdv_tipo_cadastra')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\TipoPDVController::cadastraAction',  'id_tipo_pdv' => '-1',));
+                        }
+
+                        // franbella_admin_pdv_tipo_exclui
+                        if (0 === strpos($pathinfo, '/admin/pdv/tipo/exclui') && preg_match('#^/admin/pdv/tipo/exclui(?:/(?P<id_tipo_pdv>[^/]++))?$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_pdv_tipo_exclui')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\TipoPDVController::excluiAction',  'id_tipo_pdv' => '-1',));
+                        }
+
+                    }
+
+                    // franbella_admin_pdv_cadastra
+                    if (0 === strpos($pathinfo, '/admin/pdv/cadastra') && preg_match('#^/admin/pdv/cadastra(?:/(?P<id_pdv>[^/]++))?$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_pdv_cadastra')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\PDVController::cadastraAction',  'id_pdv' => '-1',));
+                    }
+
+                    // franbella_admin_pdv_exclui
+                    if (0 === strpos($pathinfo, '/admin/pdv/exclui') && preg_match('#^/admin/pdv/exclui(?:/(?P<id_pdv>[^/]++))?$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_pdv_exclui')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\PDVController::excluiAction',  'id_pdv' => '-1',));
+                    }
+
+                    // franbella_admin_pdv_tipo_home
+                    if (0 === strpos($pathinfo, '/admin/pdv/tipo') && preg_match('#^/admin/pdv/tipo(?:/(?P<id_tipo_pdv>[^/]++))?$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_pdv_tipo_home')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\TipoPDVController::indexAction',  'id_tipo_pdv' => '',));
+                    }
+
+                    // franbella_admin_pdv_home
+                    if (preg_match('#^/admin/pdv(?:/(?P<id_pdv>[^/]++))?$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'franbella_admin_pdv_home')), array (  '_controller' => 'Franbella\\Bundle\\AdminBundle\\Controller\\PDVController::indexAction',  'id_pdv' => '',));
+                    }
+
+                }
+
             }
 
         }
@@ -193,9 +304,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Franbella\\Bundle\\SiteBundle\\Controller\\PageController::faleAction',  '_route' => 'franbella_site_fale_conosco',);
         }
 
-        // franbella_site_onde_encontro
-        if ($pathinfo === '/onde-encontro') {
-            return array (  '_controller' => 'Franbella\\Bundle\\SiteBundle\\Controller\\PageController::encontroAction',  '_route' => 'franbella_site_onde_encontro',);
+        if (0 === strpos($pathinfo, '/onde-encontro')) {
+            // franbella_site_onde_encontro
+            if ($pathinfo === '/onde-encontro') {
+                return array (  '_controller' => 'Franbella\\Bundle\\SiteBundle\\Controller\\PageController::encontroAction',  '_route' => 'franbella_site_onde_encontro',);
+            }
+
+            // franbella_site_onde_encontro_carrega_cidade
+            if ($pathinfo === '/onde-encontro/cidades') {
+                return array (  '_controller' => 'Franbella\\Bundle\\SiteBundle\\Controller\\PageController::carregaCidadeAction',  '_route' => 'franbella_site_onde_encontro_carrega_cidade',);
+            }
+
+            if (0 === strpos($pathinfo, '/onde-encontro/b')) {
+                // franbella_site_onde_encontro_carrega_bairro
+                if ($pathinfo === '/onde-encontro/bairros') {
+                    return array (  '_controller' => 'Franbella\\Bundle\\SiteBundle\\Controller\\PageController::carregaBairroAction',  '_route' => 'franbella_site_onde_encontro_carrega_bairro',);
+                }
+
+                // franbella_site_onde_encontro_busca
+                if ($pathinfo === '/onde-encontro/busca') {
+                    return array (  '_controller' => 'Franbella\\Bundle\\SiteBundle\\Controller\\PageController::encontroBuscaAction',  '_route' => 'franbella_site_onde_encontro_busca',);
+                }
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/s')) {
@@ -227,6 +359,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // bfos_brasil_cidades_busca
         if ($pathinfo === '/bfos/brasil/cidades/busca') {
             return array (  '_controller' => 'BFOS\\BrasilBundle\\Controller\\CidadeController::buscaCidadesAction',  '_route' => 'bfos_brasil_cidades_busca',);
+        }
+
+        if (0 === strpos($pathinfo, '/media/cache')) {
+            // liip_imagine_filter_runtime
+            if (preg_match('#^/media/cache/(?P<filter>[A-z0-9_\\-]*)/rc/(?P<hash>[^/]++)/(?P<path>.+)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_liip_imagine_filter_runtime;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'liip_imagine_filter_runtime')), array (  '_controller' => 'liip_imagine.controller:filterRuntimeAction',));
+            }
+            not_liip_imagine_filter_runtime:
+
+            // liip_imagine_filter
+            if (preg_match('#^/media/cache/(?P<filter>[A-z0-9_\\-]*)/(?P<path>.+)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_liip_imagine_filter;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'liip_imagine_filter')), array (  '_controller' => 'liip_imagine.controller:filterAction',));
+            }
+            not_liip_imagine_filter:
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <span class="pull-right">Enviado em {{ mensagem.dataEnvio|date('d/m/Y', 'America/Sao_Paulo') }} 
+        &agrave;s {{ mensagem.dataEnvio|date('H:i:s', 'America/Sao_Paulo') }}</span>
+    <strong>{{ mensagem.assunto }}</strong><br /><strong>Por</strong> {{ mensagem.nome }} <br />
+    <strong>Email de contato:</strong> {{ mensagem.email }} - <strong>Telefone:</strong> {{ mensagem.telefone }}<br />
+    {{ mensagem.cidade }} - {{ mensagem.uf }}
+    </div>
+<div class="modal-body">
+    {{ mensagem.mensagem }}
+</div>
+<div class="modal-footer">
+    <button type="button" id="btnFechar" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btnFechar').click(function(){
+            {#window.location = "{{ path('franbella_admin_contato_home') }}";#}
+        });
+        
+    });
+</script>

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new BFOS\BrasilBundle\BFOSBrasilBundle(),
             new Franbella\Bundle\AdminBundle\FranbellaAdminBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -35,4 +36,5 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+    
 }

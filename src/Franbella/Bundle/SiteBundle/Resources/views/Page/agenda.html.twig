@@ -3,28 +3,34 @@
 {% block conteudo %}
 <div class="caixa-eventos">
     <h3 class="titulo-pagina">Agenda/Eventos</h3>
-    <p class="subtitulo-produto">Confira nossos links e novidades</p>
+    <p class="subtitulo-produto">Confira nossa agenda</p>
     <br />
+    {% for evento in eventos %}
     <div class="evento">
         <div class="thumb-evento">
-            
+            <img src="{{ asset('uploads/evento/' ~ evento.capa) }}" />
         </div>
-        <p class="titulo-evento"><strong>HAIR BEAUTY</strong> - Rio de Janeiro - RJ - 
-            13 a 15 de outubro de 2011</p>
+        <p class="titulo-evento"><strong>{{ evento.nome|upper }}</strong> - {{ evento.cidade }} - 
+            {{ evento.dataInicial|date('d/m/Y') }} a {{ evento.dataFinal|date('d/m/Y') }}</p>
         <div class="caixa-fotos-evento">
+            {% for foto in evento.fotos %}
             <div class="thumb-evento-foto">
+                <a href="{{ asset('uploads/evento/fotos/' ~ foto.imagem) }}"><img src="{{ asset('uploads/evento/fotos/' ~ foto.imagem) }}" /></a>
+            </div>
+            {% endfor %}
+            
+           {# <div class="thumb-evento-foto">
 
             </div>
             <div class="thumb-evento-foto">
 
-            </div>
-            <div class="thumb-evento-foto">
-
-            </div>
+            </div>#}
         </div>
     </div>
+    {% endfor %}
     
-    <div class="evento">
+    
+    {#<div class="evento">
         <div class="thumb-evento">
 
         </div>
@@ -41,6 +47,6 @@
 
             </div>
         </div>
-    </div>
+    </div>#}
 </div>
 {% endblock %}

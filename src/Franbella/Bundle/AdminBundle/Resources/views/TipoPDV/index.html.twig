@@ -1,0 +1,51 @@
+{% extends "FranbellaAdminBundle:Page:index.html.twig" %}
+{% block interno %}
+{% block tituloAdministracao %}
+    <h3 class="titulo-pagina-admin">Tipos PDV</h3>
+{% endblock %}
+    <div class="panel panel-default painel-conteudo-admin">
+        <div class="panel-heading conteudo-admin">
+            <div class="caixa-form">
+                {% block conteudoAdministracao %}
+                    <form name="cadastra-distribuidor" id="cadastra-distribuidor" 
+                          action="{{ path('franbella_admin_pdv_tipo_cadastra', {'id_tipo_pdv': tipoPdv.id}) }}" method="POST" {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Cadastrar" />
+                    </form>
+                {% endblock %}
+                
+                {% if tipoPdv.id > 0 %}
+                <br />
+                <p><a href="{{ path('franbella_admin_pdv_tipo_home') }}">Criar Novo Registro</a></p>
+                {% endif %}
+                
+                {% for flashMessage in app.session.flashbag.get('resposta-tipo-pdv') %}
+                    <div class="resposta-contato">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
+            </div>
+            <div class="caixa-registros">
+                <h4><strong>Tipos Cadastrados</strong></h4>
+                {% for umTipoPdv in tiposPdv %}
+                <p>{{ umTipoPdv.nome }} 
+                    <span style="padding-left: 10px">
+                        <a href="{{ path('franbella_admin_pdv_tipo_home', {'id_tipo_pdv': umTipoPdv.id}) }}">Editar</a> | 
+                        <a href="{{ path('franbella_admin_pdv_tipo_exclui', {'id_tipo_pdv': umTipoPdv.id}) }}">Excluir</a>
+                    </span>
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.resposta-contato').fadeOut(5000);
+        
+    });
+</script>
+{% endblock %}

@@ -12,12 +12,15 @@
                   'itens': JSON.stringify(data)
             };
             
+            console.log(data);
+            
             $.ajax({
                 url: '{{ path('franbella_site_grava_dados') }}',
                 data: data,
                 type: 'POST',
                 success: function(data){
                       console.log(data);
+                      console.log("Funcionou!");
               },
               error: function(request, message, error){
                       alert("Erro!! "+ message);

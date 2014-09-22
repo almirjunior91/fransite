@@ -19,7 +19,18 @@ class PageController extends Controller {
     
     public function indexAction()
     {   
-        return $this->render('FranbellaAdminBundle:Page:index.html.twig');
+        
+        $em = $this->getDoctrine()
+                   ->getEntityManager();
+        
+        $mensagens = $em->getRepository('FranbellaSiteBundle:Contato')->listarTodosNaoLidos();
+        $distribuidoresNaoLida = $em->getRepository('FranbellaAdminBundle:Distribuidor')->listarTodosNaoLidos();
+        
+        return $this->render('FranbellaAdminBundle:Page:index.html.twig', 
+                array(
+                    'mensagens' => $mensagens,
+                    'distNaoLida' => $distribuidoresNaoLida
+                ));
     }
     
 }

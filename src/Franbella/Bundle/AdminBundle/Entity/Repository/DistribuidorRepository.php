@@ -12,4 +12,33 @@ use Doctrine\ORM\EntityRepository;
  */
 class DistribuidorRepository extends EntityRepository
 {
+    
+    public function listarTodos($limite = null)
+    {
+        $qb = $this->createQueryBuilder('d')
+                   ->select('d')
+                   ->addOrderBy('d.razaoSocial');
+
+        if (false === is_null($limite))
+            $qb->setMaxResults($limite);
+
+        return $qb->getQuery()
+                  ->getResult();
+    }
+    
+    public function listarTodosNaoLidos($limite = null)
+    {
+        $qb = $this->createQueryBuilder('d')
+                   ->select('di')
+                   ->from('FranbellaSiteBundle:Distribuidor', 'di')
+                   ->where("di.lida = 0")
+                   ->addOrderBy('di.dataEnvio');
+
+        if (false === is_null($limite))
+            $qb->setMaxResults($limite);
+
+        return $qb->getQuery()
+                  ->getResult();
+    }
+    
 }

@@ -6,9 +6,21 @@ parameters:
     database_name: franbella
     database_user: root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: smtp.valeservicefarma.com.br
-    mailer_user: almir@valeservicefarma.com.br
-    mailer_password: almir123
+    
+    mailer_transport:  smtp
+    mailer_host:       smtp.valeservicefarma.com.br
+    mailer_user:       almir@valeservicefarma.com.br
+    mailer_password:   almir123
+    auth_mode:         login
+    port:              587
+    encryption:        tls
+    
+#    mailer_transport: smtp
+#    mailer_host: smtp.gmail.com
+#    mailer_user: almir.amjunior@gmail.com
+#    mailer_password: almirjunior
+    #mailer_host: smtp.valeservicefarma.com.br
+    #mailer_user: almir@valeservicefarma.com.br
+    #mailer_password: almir123
     locale: pt
     secret: eeee2f7be844ad312f7ffdce6079cc67

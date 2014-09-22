@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <span class="pull-right">Enviado em {{ distribuidor.dataEnvio|date('d/m/Y') }} 
+        &agrave;s {{ distribuidor.dataEnvio|date('H:i:s') }}</span>
+    <strong>Raz&atilde;o Social: </strong>{{ distribuidor.RazaoSocial }} | 
+    <strong>Fantasia: </strong>{{ distribuidor.fantasia }} <br />
+    <strong>CPF/CNPJ: </strong>{{ distribuidor.cpfCnpj }} | 
+    <strong>Inscri&ccedil;&atilde;o Estadual: </strong>{{ distribuidor.inscricaoEstadual }} <br />
+    <strong>Telefone:</strong> {{ distribuidor.telefoneFixo }} <strong>Ramal:</strong> {{ distribuidor.ramal }} | 
+    <strong>Celular:</strong> {{ distribuidor.celular }}
+    </div>
+<div class="modal-body">
+    <h4><strong>Detalhes</strong></h4>
+    <strong>&Aacute;rea de Atua&ccedil;&atilde;o: </strong>{{ distribuidor.areaAtuacao }}<br />
+    <strong>Quantidade de Representantes: </strong>{{ distribuidor.qtdRepresentantes|default('-') }}<br />
+    <strong>Faturamento Bruto (R$): </strong>{{ distribuidor.faturamentoBruto|number_format(2, ',', '.') }}<br />
+    
+    <h4><strong><u>Refer&ecirc;ncias Comerciais</u></strong></h4>
+    {% for fornecedor in distribuidor.fornecedores %}
+    <p><h4><strong>{{ fornecedor.fornecedor }}</strong></h4><strong>Telefone: </strong>{{ fornecedor.telefone }}<br /> 
+        <strong>Contato: </strong>{{ fornecedor.contato }}</p>
+    {% endfor %}
+</div>
+<div class="modal-footer">
+    <button type="button" id="btnFechar" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btnFechar').click(function(){
+            {#window.location = "{{ path('franbella_admin_contato_home') }}";#}
+        });
+        
+    });
+</script>

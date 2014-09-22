@@ -29,6 +29,18 @@ franbella_site_fale_conosco:
 franbella_site_onde_encontro:
     pattern:  /onde-encontro
     defaults: { _controller: FranbellaSiteBundle:Page:encontro }
+    
+franbella_site_onde_encontro_carrega_cidade:
+    pattern:  /onde-encontro/cidades
+    defaults: { _controller: FranbellaSiteBundle:Page:carregaCidade }
+    
+franbella_site_onde_encontro_carrega_bairro:
+    pattern:  /onde-encontro/bairros
+    defaults: { _controller: FranbellaSiteBundle:Page:carregaBairro }
+    
+franbella_site_onde_encontro_busca:
+    pattern:  /onde-encontro/busca
+    defaults: { _controller: FranbellaSiteBundle:Page:encontroBusca }
 
 franbella_site_seja_distribuidor:
     pattern:  /seja-distribuidor
